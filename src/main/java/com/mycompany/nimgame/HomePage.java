@@ -92,8 +92,7 @@ public class HomePage extends javax.swing.JFrame {
 
         bg0.setBackground(new java.awt.Color(204, 255, 255));
         bg0.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        bg0.setIcon(new javax.swing.ImageIcon("D:\\nimGame\\src\\main\\java\\images\\bg.png")); // NOI18N
-        bg0.setText("bg0");
+        bg0.setIcon(new javax.swing.ImageIcon("D:\\NLCSN\\nimGame\\src\\main\\java\\com\\mycompany\\images\\bg.png")); // NOI18N
         jPanel1.add(bg0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
