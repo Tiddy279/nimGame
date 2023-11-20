@@ -578,7 +578,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
 
     private void test(int num, int[] arr, JPanel col) {
         if (chosen == 0 && numAmount > 0) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn ít nhất 1 ô", "Thông báo", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn ít nhất 1 ô", "LỖI", JOptionPane.OK_OPTION);
         } else {
             numAmount -= chosen;
             remainNum.setText(String.valueOf(numAmount));
