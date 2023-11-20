@@ -66,13 +66,13 @@ public class PlayWithBot extends javax.swing.JFrame {
         numA = rd.nextInt(7 - 1) + 1;
         numB = rd.nextInt(7 - 1) + 1;
         numC = rd.nextInt(7 - 1) + 1;
-        numD = rd.nextInt(7 - 1) + 1;
-        numE = rd.nextInt(7 - 1) + 1;
-        total = numA + numB + numC + numD + numE;
+//        numD = rd.nextInt(7 - 1) + 1;
+//        numE = rd.nextInt(7 - 1) + 1;
+        total = numA + numB + numC;
         player1 = 0;
         player2 = 1;
         numAmount = total;
-        chosen=0;
+        chosen = 0;
         arrA = new int[numA];
         for (int i = 0; i < numA; i++) {
             arrA[i] = 1;
@@ -102,8 +102,6 @@ public class PlayWithBot extends javax.swing.JFrame {
         createLable(colB);
 
         createLable(colC);
-
-        
 
         initBtn(numA, arrA, colA);
         initBtn(numB, arrB, colB);
@@ -438,20 +436,24 @@ public class PlayWithBot extends javax.swing.JFrame {
             int temp = 0;
             if (cola != 0) {
                 temp++;
+                
             }
             if (colb != 0) {
                 temp++;
+                
             }
             if (colc != 0) {
                 temp++;
             }
-            System.out.print("\nTemp = " + temp);
             if (temp == 3) {
+         
                 if (cola > 1) {
 //                    cola = 1;
                     for (int i = 0; i < numA; i++) {
                         arrA[i] = 0;
+                        
                     }
+                    numAmount-=(cola-1);
                     arrA[0] = 1;
                     colA.removeAll();
                     initBtn(numA, arrA, colA);
@@ -460,6 +462,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                     for (int i = 0; i < numB; i++) {
                         arrB[i] = 0;
                     }
+                    numAmount-=(colb-1);
                     arrB[0] = 1;
                     colB.removeAll();
                     initBtn(numB, arrB, colB);
@@ -469,15 +472,18 @@ public class PlayWithBot extends javax.swing.JFrame {
                         arrC[i] = 0;
                     }
                     arrC[0] = 1;
+                    numAmount-=(colc-1);
                     colC.removeAll();
                     initBtn(numC, arrC, colC);
                 }
             } else if (temp == 2) {
+               
                 if (cola > 1) {
 //                    cola = 0;
                     for (int i = 0; i < numA; i++) {
                         arrA[i] = 0;
                     }
+                    numAmount-=cola;
                     colA.removeAll();
                     initBtn(numA, arrA, colA);
                 } else if (colb > 1) {
@@ -485,6 +491,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                     for (int i = 0; i < numB; i++) {
                         arrB[i] = 0;
                     }
+                    numAmount-=colb;
                     colB.removeAll();
                     initBtn(numB, arrB, colB);
                 } else {
@@ -493,6 +500,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                         arrC[i] = 0;
                         System.out.print(arrC[i] + " ");
                     }
+                    numAmount-=colc;
                     colC.removeAll();
                     initBtn(numC, arrC, colC);
                 }
@@ -502,6 +510,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                     for (int i = 0; i < numA; i++) {
                         arrA[i] = 0;
                     }
+                    numAmount-=(cola-1);
                     arrA[0] = 1;
                     colA.removeAll();
                     initBtn(numA, arrA, colA);
@@ -510,6 +519,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                     for (int i = 0; i < numB; i++) {
                         arrB[i] = 0;
                     }
+                    numAmount-=(colb-1);
                     arrB[0] = 1;
                     colB.removeAll();
                     initBtn(numB, arrB, colB);
@@ -518,6 +528,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                     for (int i = 0; i < numC; i++) {
                         arrC[i] = 0;
                     }
+                    numAmount-=(colc-1);
                     arrC[0] = 1;
                     colC.removeAll();
                     initBtn(numC, arrC, colC);
@@ -549,6 +560,8 @@ public class PlayWithBot extends javax.swing.JFrame {
                 colc++;
             }
         }
+        int numAmount =cola+colb+colc;
+        remainNum.setText(string.valueOf(numAmount));
     }
 
     public void botMove() {
@@ -560,7 +573,9 @@ public class PlayWithBot extends javax.swing.JFrame {
             if ((cola ^ (cola ^ colb ^ colc)) < cola) {
                 int sosoiboc = cola - (cola ^ (cola ^ colb ^ colc));
 //                cola -= sosoiboc;
+                numAmount -= sosoiboc;
                 int temp = 0;
+
                 int i = 0;
                 do {
                     if (arrA[i] == 1) {
@@ -575,8 +590,10 @@ public class PlayWithBot extends javax.swing.JFrame {
                 initBtn(numA, arrA, colA);
             } else if ((colb ^ (cola ^ colb ^ colc)) < colb) {
                 int sosoiboc = colb - (colb ^ (cola ^ colb ^ colc));
+                numAmount -= sosoiboc;
 //                colb -= sosoiboc;
                 int temp = 0;
+                numAmount -= temp;
                 int i = 0;
                 do {
                     if (arrB[i] == 1) {
@@ -591,6 +608,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                 initBtn(numB, arrB, colB);
             } else if ((colc ^ (cola ^ colb ^ colc)) < colc) {
                 int sosoiboc = colc - (colc ^ (cola ^ colb ^ colc));
+                numAmount -= sosoiboc;
 //                colc -= sosoiboc;
 
                 int temp = 0;
@@ -605,10 +623,12 @@ public class PlayWithBot extends javax.swing.JFrame {
                     }
                 } while (temp != sosoiboc);
                 colC.removeAll();
+                numAmount -= sosoiboc;
                 initBtn(numC, arrC, colC);
             }
         } else {
             int temp = Math.max(cola, max(colb, colc));
+            numAmount -= temp;
             if (cola == temp) {
 //                cola--;
                 int y = 0;
@@ -623,8 +643,10 @@ public class PlayWithBot extends javax.swing.JFrame {
                     }
                 } while (y != 1);
                 colA.removeAll();
+
                 initBtn(numA, arrA, colA);
             } else if (colb == temp) {
+
 //                colb--;
                 int y = 0;
                 int i = 0;
@@ -639,6 +661,7 @@ public class PlayWithBot extends javax.swing.JFrame {
 
                 } while (y != 1);
                 colB.removeAll();
+
                 initBtn(numB, arrB, colB);
             } else {
 //                colc--;
@@ -670,7 +693,7 @@ public class PlayWithBot extends javax.swing.JFrame {
             lb.setText("Cột B");
         } else if (collum == colC) {
             lb.setText("Cột C");
-        } 
+        }
         lb.setSize(50, 30);
         lb.setLocation(30, 450);
         lb.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -707,10 +730,11 @@ public class PlayWithBot extends javax.swing.JFrame {
     private void checkLocation() {
         if (location == colA.getX()) {
             test(numA, arrA, colA);
-            
+
             getColNum();
             if (checkthdb() == false) {
                 botMove();
+                
             }
             getColNum();
         } else if (location == colB.getX()) {
@@ -727,7 +751,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                 botMove();
             }
             getColNum();
-        } 
+        }
         repaint();
     }
 
@@ -741,7 +765,7 @@ public class PlayWithBot extends javax.swing.JFrame {
             colA.removeAll();
             colB.removeAll();
             colC.removeAll();
-            
+
             location = 0;
             chosen = 0;
             init();
@@ -789,56 +813,29 @@ public class PlayWithBot extends javax.swing.JFrame {
         repaint();
     }
 
-    private void checkWin() {
-        if (numAmount - chosen == 0) {
-            if (player2 >= player1) {
-                int choice = JOptionPane.showConfirmDialog(null, "P2 chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
-                if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
-                    Object[] option = {
-                        "Làm mới",
-                        "Về trang chủ"
-                    };
-                    int a = JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
-                    if (a == JOptionPane.YES_OPTION) {
-                        colA.removeAll();
-                        colB.removeAll();
-                        colC.removeAll();
-                        
-                        location = 0;
-                        chosen = 0;
-                        init();
-                    } else {
-                        HomePage homePage = new HomePage();
-                        homePage.setVisible(true);
-
-                        dispose();// Đóng jframe hiện tại
-                    }
-                }
-
-            } else {
-                int choice = JOptionPane.showConfirmDialog(null, "P1 chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
-                if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
-                    Object[] option = {
-                        "Làm mới",
-                        "Về trang chủ"
-                    };
-                    int a = JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
-                    if (a == JOptionPane.YES_OPTION) {
-                        colA.removeAll();
-                        colB.removeAll();
-                        colC.removeAll();
-                        
-                        location = 0;
-                        chosen = 0;
-                        init();
-                    } else {
-                        HomePage homePage = new HomePage();
-                        homePage.setVisible(true);
-
-                        dispose();// Đóng jframe hiện tại
-                    }
-                }
+    public boolean checkWin() {
+        int colAcheck = 0;
+        for (int i = 0; i < numA; i++) {
+            if (arrA[i] == 1) {
+                colAcheck += 1;
             }
+        }
+        int colBcheck = 0;
+        for (int i = 0; i < numB; i++) {
+            if (arrB[i] == 1) {
+                colBcheck += 1;
+            }
+        }
+        int colCcheck = 0;
+        for (int i = 0; i < numC; i++) {
+            if (arrC[i] == 1) {
+                colCcheck += 1;
+            }
+        }
+        if ((colAcheck + colBcheck + colCcheck) == 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
