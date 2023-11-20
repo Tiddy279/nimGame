@@ -45,7 +45,7 @@ public class PlayWithBot extends javax.swing.JFrame {
         init();
     }
     int player1;
-    int player2;
+    int bot;
     int[] arrA;
     int[] arrB;
     int[] arrC;
@@ -66,11 +66,10 @@ public class PlayWithBot extends javax.swing.JFrame {
         numA = rd.nextInt(7 - 1) + 1;
         numB = rd.nextInt(7 - 1) + 1;
         numC = rd.nextInt(7 - 1) + 1;
-//        numD = rd.nextInt(7 - 1) + 1;
-//        numE = rd.nextInt(7 - 1) + 1;
+
         total = numA + numB + numC;
         player1 = 0;
-        player2 = 1;
+        bot = 1;
         botmove=1;
         numAmount = total;
         chosen = 0;
@@ -374,7 +373,7 @@ public class PlayWithBot extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1192, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1290, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -537,6 +536,7 @@ public class PlayWithBot extends javax.swing.JFrame {
             }
 //            System.out.print(cola + " " + colb + " " + colc);
             repaint();
+            checkWin();
             return true;
         }
         return false;
@@ -568,13 +568,13 @@ public class PlayWithBot extends javax.swing.JFrame {
     public void botMove() {
         getColNum();
         int s = cola ^ colb ^ colc;
-        System.out.print(cola + " " + colb + " " + colc + " s== " + s);
 
         if (s != 0) {
             if ((cola ^ (cola ^ colb ^ colc)) < cola) {
                 int sosoiboc = cola - (cola ^ (cola ^ colb ^ colc));
 //                cola -= sosoiboc;
                 numAmount -= sosoiboc;
+               
                 int temp = 0;
 
                 int i = 0;
@@ -592,6 +592,7 @@ public class PlayWithBot extends javax.swing.JFrame {
             } else if ((colb ^ (cola ^ colb ^ colc)) < colb) {
                 int sosoiboc = colb - (colb ^ (cola ^ colb ^ colc));
                 numAmount -= sosoiboc;
+               
 //                colb -= sosoiboc;
                 int temp = 0;
                 numAmount -= temp;
@@ -610,6 +611,7 @@ public class PlayWithBot extends javax.swing.JFrame {
             } else if ((colc ^ (cola ^ colb ^ colc)) < colc) {
                 int sosoiboc = colc - (colc ^ (cola ^ colb ^ colc));
                 numAmount -= sosoiboc;
+                
 //                colc -= sosoiboc;
 
                 int temp = 0;
@@ -625,12 +627,14 @@ public class PlayWithBot extends javax.swing.JFrame {
                 } while (temp != sosoiboc);
                 colC.removeAll();
                 numAmount -= sosoiboc;
+                
                 initBtn(numC, arrC, colC);
             }
         } else {
       
             int temp = Math.max(cola, max(colb, colc));
             numAmount -= temp;
+           
             if (cola == temp) {
 //                cola--;
                 int y = 0;
@@ -725,7 +729,7 @@ public class PlayWithBot extends javax.swing.JFrame {
             JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
         }
         checkLocation();
-        checkWin();
+     
 
     }//GEN-LAST:event_btn_continueActionPerformed
     int botmove = 0;
@@ -775,7 +779,7 @@ public class PlayWithBot extends javax.swing.JFrame {
             chosen = 0;
             init();
         }
-
+        
     }//GEN-LAST:event_RecreateActionPerformed
 
     private void test(int num, int[] arr, JPanel col) {
@@ -793,15 +797,14 @@ public class PlayWithBot extends javax.swing.JFrame {
             if (numAmount == 0) {
                 btn_continue.setBackground(Color.red);
             }
-            if (player1 < player2) {
-                jPanel6.setBackground(Color.white);
-                jPanel5.setBackground(Color.red);
-                player1 += 1;
-            } else {
+            if (player1 < bot) {
                 jPanel6.setBackground(Color.red);
-                jPanel5.setBackground(Color.white);
-                player2 += 1;
-            }
+                jPanel6.setBackground(Color.white);
+                jPanel6.setBackground(Color.white);
+                jPanel6.setBackground(Color.white);
+                jPanel6.setBackground(Color.red);
+                player1 += 1;
+            } 
             checkWin();
             repaint();
         }
@@ -841,16 +844,16 @@ public class PlayWithBot extends javax.swing.JFrame {
             }
         }
         if ((colAcheck + colBcheck + colCcheck) == 0) {
-            if (player2 <= player1) {
+            if (bot <= player1) {
                 botmove=1;
-                int choice = JOptionPane.showConfirmDialog(null, "P2 chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
+                int choice = JOptionPane.showConfirmDialog(null, "Máy chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
                 if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
                     Object[] option = {
                         "Làm mới",
                         "Về trang chủ"
                     };
                     int a = JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
-                    if (a == JOptionPane.YES_OPTION) {
+                    if (a == JOptionPane.YES_OPTION ) {
                         colA.removeAll();
                         colB.removeAll();
                         colC.removeAll();
@@ -858,12 +861,20 @@ public class PlayWithBot extends javax.swing.JFrame {
                         location = 0;
                         chosen = 0;
                         init();
-                    } else {
+                    }
+                    if (a == JOptionPane.CLOSED_OPTION) {
+                    Object[] op = {
+                        "Làm mới",
+                        "Về trang chủ"
+                    };
+                    }
+                    else if (a == JOptionPane.NO_OPTION){
                         HomePage homePage = new HomePage();
                         homePage.setVisible(true);
 
                         dispose();// Đóng jframe hiện tại
                     }
+                    
                 }
 
             } else {
