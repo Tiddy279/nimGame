@@ -39,7 +39,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="670" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="678" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -140,11 +140,11 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="colE" max="32767" attributes="0"/>
-                              <Component id="colD" alignment="0" max="32767" attributes="0"/>
-                              <Component id="colC" alignment="0" max="32767" attributes="0"/>
+                              <Component id="colA" alignment="0" max="32767" attributes="0"/>
                               <Component id="colB" alignment="0" max="32767" attributes="0"/>
-                              <Component id="colA" max="32767" attributes="0"/>
+                              <Component id="colC" alignment="0" max="32767" attributes="0"/>
+                              <Component id="colD" alignment="0" max="32767" attributes="0"/>
+                              <Component id="colE" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -167,7 +167,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="506" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -248,7 +248,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="506" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>

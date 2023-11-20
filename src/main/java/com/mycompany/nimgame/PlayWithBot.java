@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import static java.lang.Integer.max;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,9 +38,9 @@ import javax.swing.SwingUtilities;
  *
  * @author DUY
  */
-public class PlayWithPerson extends javax.swing.JFrame {
+public class PlayWithBot extends javax.swing.JFrame {
 
-    public PlayWithPerson() {
+    public PlayWithBot() {
         initComponents();
         init();
     }
@@ -58,6 +59,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
     int chosen = 0;
     //numAmount = totalNum
     int numAmount, remainAmount;
+    int cola, colb, colc, cold, cole;
 
     private void init() {
         Random rd = new Random();
@@ -70,6 +72,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
         player1 = 0;
         player2 = 1;
         numAmount = total;
+        chosen=0;
         arrA = new int[numA];
         for (int i = 0; i < numA; i++) {
             arrA[i] = 1;
@@ -100,15 +103,11 @@ public class PlayWithPerson extends javax.swing.JFrame {
 
         createLable(colC);
 
-        createLable(colD);
-
-        createLable(colE);
+        
 
         initBtn(numA, arrA, colA);
         initBtn(numB, arrB, colB);
         initBtn(numC, arrC, colC);
-        initBtn(numD, arrD, colD);
-        initBtn(numE, arrE, colE);
         btn_continue.setBackground(new java.awt.Color(242, 237, 237));
     }
 
@@ -123,8 +122,6 @@ public class PlayWithPerson extends javax.swing.JFrame {
         colA = new javax.swing.JPanel();
         colB = new javax.swing.JPanel();
         colC = new javax.swing.JPanel();
-        colD = new javax.swing.JPanel();
-        colE = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         Person2 = new javax.swing.JLabel();
@@ -135,12 +132,8 @@ public class PlayWithPerson extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btn_continue = new javax.swing.JButton();
         remainNum = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         number = new javax.swing.JLabel();
         Recreate = new javax.swing.JButton();
-        delete = new javax.swing.JLabel();
-        index = new javax.swing.JLabel();
         footer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -208,32 +201,6 @@ public class PlayWithPerson extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        colD.setBackground(new java.awt.Color(38, 207, 207));
-
-        javax.swing.GroupLayout colDLayout = new javax.swing.GroupLayout(colD);
-        colD.setLayout(colDLayout);
-        colDLayout.setHorizontalGroup(
-            colDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        colDLayout.setVerticalGroup(
-            colDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        colE.setBackground(new java.awt.Color(38, 207, 207));
-
-        javax.swing.GroupLayout colELayout = new javax.swing.GroupLayout(colE);
-        colE.setLayout(colELayout);
-        colELayout.setHorizontalGroup(
-            colELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        colELayout.setVerticalGroup(
-            colELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -245,11 +212,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
                 .addComponent(colB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(colC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(colD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addComponent(colE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,10 +220,8 @@ public class PlayWithPerson extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(colA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(colB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(colC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(colD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(colE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(colB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -268,10 +229,10 @@ public class PlayWithPerson extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,22 +249,23 @@ public class PlayWithPerson extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         Person2.setBackground(new java.awt.Color(51, 102, 255));
-        Person2.setIcon(new javax.swing.ImageIcon("D:\\NLCSN\\nimGame\\src\\main\\java\\com\\mycompany\\images\\person.png")); // NOI18N
+        Person2.setIcon(new javax.swing.ImageIcon("D:\\NLCSN\\nimGame\\src\\main\\java\\com\\mycompany\\images\\bot.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(Person2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addComponent(Person2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(Person2, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addGap(9, 9, 9)
+                .addComponent(Person2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9))
         );
 
         playTurn.setBackground(new java.awt.Color(244, 251, 251));
@@ -335,21 +297,16 @@ public class PlayWithPerson extends javax.swing.JFrame {
         jLabel1.setText("P1");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("P2");
+        jLabel2.setText("Máy");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -358,9 +315,13 @@ public class PlayWithPerson extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(49, 49, 49))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,11 +332,11 @@ public class PlayWithPerson extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(56, 56, 56))
+                .addGap(50, 50, 50))
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 10, 140, 530));
@@ -391,25 +352,11 @@ public class PlayWithPerson extends javax.swing.JFrame {
         jPanel1.add(btn_continue, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 580, 110, 40));
 
         remainNum.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(remainNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 593, 70, 20));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 590, 110, 30));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 590, 110, 30));
+        jPanel1.add(remainNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 587, 100, 30));
 
         number.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         number.setText("Số lượng :");
-        jPanel1.add(number, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 590, 90, -1));
+        jPanel1.add(number, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 90, -1));
 
         Recreate.setBackground(new java.awt.Color(242, 237, 237));
         Recreate.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -421,16 +368,8 @@ public class PlayWithPerson extends javax.swing.JFrame {
         });
         jPanel1.add(Recreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 580, 110, 40));
 
-        delete.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        delete.setText("Xóa:");
-        jPanel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 590, -1, -1));
-
-        index.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        index.setText("Tên cột: ");
-        jPanel1.add(index, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, -1, -1));
-
         footer.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel1.add(footer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 1170, 100));
+        jPanel1.add(footer, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 540, 1170, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -491,6 +430,237 @@ public class PlayWithPerson extends javax.swing.JFrame {
         repaint();
     }
 
+    public boolean checkthdb() {
+        if ((cola == 1 && colb == 1 && colc > 1) || (cola == 1 && colb > 1 && colc == 1) || (cola > 1 && colb == 1 && colc == 1)
+                || (cola == 0 && colb == 1 && colc > 1) || (cola == 0 && colb > 1 && colc == 1) || (cola > 1 && colb == 0 && colc == 1)
+                || (cola == 1 && colb == 0 && colc > 1) || (cola > 1 && colb == 1 && colc == 0) || (cola == 1 && colb > 1 && colc == 0)
+                || (cola == 0 && colb == 0 && colc > 1) || (cola > 1 && colb == 0 && colc == 0) || (cola == 0 && colb > 1 && colc == 0)) {
+            int temp = 0;
+            if (cola != 0) {
+                temp++;
+            }
+            if (colb != 0) {
+                temp++;
+            }
+            if (colc != 0) {
+                temp++;
+            }
+            System.out.print("\nTemp = " + temp);
+            if (temp == 3) {
+                if (cola > 1) {
+//                    cola = 1;
+                    for (int i = 0; i < numA; i++) {
+                        arrA[i] = 0;
+                    }
+                    arrA[0] = 1;
+                    colA.removeAll();
+                    initBtn(numA, arrA, colA);
+                } else if (colb > 1) {
+//                    colb = 1;
+                    for (int i = 0; i < numB; i++) {
+                        arrB[i] = 0;
+                    }
+                    arrB[0] = 1;
+                    colB.removeAll();
+                    initBtn(numB, arrB, colB);
+                } else {
+//                    colc = 1;
+                    for (int i = 0; i < numC; i++) {
+                        arrC[i] = 0;
+                    }
+                    arrC[0] = 1;
+                    colC.removeAll();
+                    initBtn(numC, arrC, colC);
+                }
+            } else if (temp == 2) {
+                if (cola > 1) {
+//                    cola = 0;
+                    for (int i = 0; i < numA; i++) {
+                        arrA[i] = 0;
+                    }
+                    colA.removeAll();
+                    initBtn(numA, arrA, colA);
+                } else if (colb > 1) {
+//                    colb = 0;
+                    for (int i = 0; i < numB; i++) {
+                        arrB[i] = 0;
+                    }
+                    colB.removeAll();
+                    initBtn(numB, arrB, colB);
+                } else {
+//                    colc = 0;
+                    for (int i = 0; i < numC; i++) {
+                        arrC[i] = 0;
+                        System.out.print(arrC[i] + " ");
+                    }
+                    colC.removeAll();
+                    initBtn(numC, arrC, colC);
+                }
+            } else {
+                if (cola > 1) {
+//                    cola = 1;
+                    for (int i = 0; i < numA; i++) {
+                        arrA[i] = 0;
+                    }
+                    arrA[0] = 1;
+                    colA.removeAll();
+                    initBtn(numA, arrA, colA);
+                } else if (colb > 1) {
+//                    colb = 1;
+                    for (int i = 0; i < numB; i++) {
+                        arrB[i] = 0;
+                    }
+                    arrB[0] = 1;
+                    colB.removeAll();
+                    initBtn(numB, arrB, colB);
+                } else {
+//                    colc = 1;
+                    for (int i = 0; i < numC; i++) {
+                        arrC[i] = 0;
+                    }
+                    arrC[0] = 1;
+                    colC.removeAll();
+                    initBtn(numC, arrC, colC);
+                }
+            }
+//            System.out.print(cola + " " + colb + " " + colc);
+            repaint();
+            return true;
+        }
+        return false;
+    }
+
+    public void getColNum() {
+        cola = 0;
+        colb = 0;
+        colc = 0;
+        for (int i = 0; i < numA; i++) {
+            if (arrA[i] == 1) {
+                cola++;
+            }
+        }
+        for (int i = 0; i < numB; i++) {
+            if (arrB[i] == 1) {
+                colb++;
+            }
+        }
+        for (int i = 0; i < numC; i++) {
+            if (arrC[i] == 1) {
+                colc++;
+            }
+        }
+    }
+
+    public void botMove() {
+        getColNum();
+        int s = cola ^ colb ^ colc;
+        System.out.print(cola + " " + colb + " " + colc + " s== " + s);
+
+        if (s != 0) {
+            if ((cola ^ (cola ^ colb ^ colc)) < cola) {
+                int sosoiboc = cola - (cola ^ (cola ^ colb ^ colc));
+//                cola -= sosoiboc;
+                int temp = 0;
+                int i = 0;
+                do {
+                    if (arrA[i] == 1) {
+                        arrA[i] = 0;
+                        i++;
+                        temp++;
+                    } else {
+                        i++;
+                    }
+                } while (temp != sosoiboc);
+                colA.removeAll();
+                initBtn(numA, arrA, colA);
+            } else if ((colb ^ (cola ^ colb ^ colc)) < colb) {
+                int sosoiboc = colb - (colb ^ (cola ^ colb ^ colc));
+//                colb -= sosoiboc;
+                int temp = 0;
+                int i = 0;
+                do {
+                    if (arrB[i] == 1) {
+                        arrB[i] = 0;
+                        i++;
+                        temp++;
+                    } else {
+                        i++;
+                    }
+                } while (temp != sosoiboc);
+                colB.removeAll();
+                initBtn(numB, arrB, colB);
+            } else if ((colc ^ (cola ^ colb ^ colc)) < colc) {
+                int sosoiboc = colc - (colc ^ (cola ^ colb ^ colc));
+//                colc -= sosoiboc;
+
+                int temp = 0;
+                int i = 0;
+                do {
+                    if (arrC[i] == 1) {
+                        arrC[i] = 0;
+                        i++;
+                        temp++;
+                    } else {
+                        i++;
+                    }
+                } while (temp != sosoiboc);
+                colC.removeAll();
+                initBtn(numC, arrC, colC);
+            }
+        } else {
+            int temp = Math.max(cola, max(colb, colc));
+            if (cola == temp) {
+//                cola--;
+                int y = 0;
+                int i = 0;
+                do {
+                    if (arrA[i] == 1) {
+                        arrA[i] = 0;
+                        i++;
+                        temp++;
+                    } else {
+                        i++;
+                    }
+                } while (y != 1);
+                colA.removeAll();
+                initBtn(numA, arrA, colA);
+            } else if (colb == temp) {
+//                colb--;
+                int y = 0;
+                int i = 0;
+                do {
+                    if (arrB[i] == 1) {
+                        arrB[i] = 0;
+                        i++;
+                        temp++;
+                    } else {
+                        i++;
+                    }
+
+                } while (y != 1);
+                colB.removeAll();
+                initBtn(numB, arrB, colB);
+            } else {
+//                colc--;
+                int y = 0;
+                int i = 0;
+                do {
+                    if (arrC[i] == 1) {
+                        arrC[i] = 0;
+                        i++;
+                        temp++;
+                    } else {
+                        i++;
+                    }
+                } while (y != 1);
+                colC.removeAll();
+                initBtn(numC, arrC, colC);
+            }
+        }
+        repaint();
+//        System.out.print("\n" + cola + " " + colb + " " + colc);
+    }
+
     private void createLable(JPanel collum) {
         JLabel lb = new JLabel();
         collum.add(lb);
@@ -500,11 +670,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
             lb.setText("Cột B");
         } else if (collum == colC) {
             lb.setText("Cột C");
-        } else if (collum == colD) {
-            lb.setText("Cột D");
-        } else if (collum == colE) {
-            lb.setText("Cột E");
-        }
+        } 
         lb.setSize(50, 30);
         lb.setLocation(30, 450);
         lb.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -533,27 +699,35 @@ public class PlayWithPerson extends javax.swing.JFrame {
             };
             JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
         }
-        if (jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty()) {
-            checkLocation();
-            checkWin();
-        } else {
-            continute();
-            checkWin();
-        }
+        checkLocation();
+        checkWin();
+
     }//GEN-LAST:event_btn_continueActionPerformed
 
     private void checkLocation() {
         if (location == colA.getX()) {
             test(numA, arrA, colA);
+            
+            getColNum();
+            if (checkthdb() == false) {
+                botMove();
+            }
+            getColNum();
         } else if (location == colB.getX()) {
             test(numB, arrB, colB);
-        } else if (location == colC.getX()) {
-            test(numC, arrC, colC);
-        } else if (location == colD.getX()) {
-            test(numD, arrD, colD);
+            getColNum();
+            if (checkthdb() == false) {
+                botMove();
+            }
+            getColNum();
         } else {
-            test(numE, arrE, colE);
-        }
+            test(numC, arrC, colC);
+            getColNum();
+            if (checkthdb() == false) {
+                botMove();
+            }
+            getColNum();
+        } 
         repaint();
     }
 
@@ -567,8 +741,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
             colA.removeAll();
             colB.removeAll();
             colC.removeAll();
-            colD.removeAll();
-            colE.removeAll();
+            
             location = 0;
             chosen = 0;
             init();
@@ -603,10 +776,6 @@ public class PlayWithPerson extends javax.swing.JFrame {
 
     }
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        String string = jTextField1.getText();
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void deleteBtn(int num, int[] arr, JPanel col, int numip) {
         int y = 0;
         for (int i = 0; i < num; i++) {
@@ -620,27 +789,9 @@ public class PlayWithPerson extends javax.swing.JFrame {
         repaint();
     }
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private boolean remain(int[] arr, int num, JPanel col, int input) {
-        for (int i = 0; i < num; i++) {
-            if (arr[i] == 1) {
-                remainAmount += 1;
-            }
-        }
-        if (remainAmount < input) {
-            JOptionPane.showMessageDialog(null, "Vuợt quá số lượng ô trong cột", "LỖI", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     private void checkWin() {
         if (numAmount - chosen == 0) {
-            if (player2 <= player1) {
+            if (player2 >= player1) {
                 int choice = JOptionPane.showConfirmDialog(null, "P2 chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
                 if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
                     Object[] option = {
@@ -652,8 +803,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
                         colA.removeAll();
                         colB.removeAll();
                         colC.removeAll();
-                        colD.removeAll();
-                        colE.removeAll();
+                        
                         location = 0;
                         chosen = 0;
                         init();
@@ -677,8 +827,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
                         colA.removeAll();
                         colB.removeAll();
                         colC.removeAll();
-                        colD.removeAll();
-                        colE.removeAll();
+                        
                         location = 0;
                         chosen = 0;
                         init();
@@ -693,32 +842,11 @@ public class PlayWithPerson extends javax.swing.JFrame {
         }
     }
 
-    private void continute() {
-        string = jTextField2.getText();
-        numip = jTextField1.getText();
-        input = Integer.valueOf(numip);
-        char string1 = string.charAt(0);
-        System.out.print(string1);
-        if (string1 == 'A' && remain(arrA, numA, colA, input)) {
-            deleteBtn(numA, arrA, colA, input);
-        } else if (string1 == 'B' && remain(arrB, numB, colB, input)) {
-            deleteBtn(numB, arrB, colB, input);
-        } else if (string1 == 'C' && remain(arrC, numC, colC, input)) {
-            deleteBtn(numC, arrC, colC, input);
-        } else if (string1 == 'D' && remain(arrD, numD, colD, input)) {
-            deleteBtn(numD, arrD, colD, input);
-        } else if (string1 == 'E' && remain(arrE, numE, colE, input)) {
-            deleteBtn(numE, arrE, colE, input);
-        } else if (string1 != 'A' && string1 != 'B' && string1 != 'C' && string1 != 'D' && string1 != 'E') {
-            JOptionPane.showMessageDialog(null, "Cột " + string + " không tồn tại", "LỖI", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new PlayWithPerson().setVisible(true);
+                new PlayWithBot().setVisible(true);
             }
         });
     }
@@ -731,11 +859,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
     private javax.swing.JPanel colA;
     private javax.swing.JPanel colB;
     private javax.swing.JPanel colC;
-    private javax.swing.JPanel colD;
-    private javax.swing.JPanel colE;
-    private javax.swing.JLabel delete;
     private javax.swing.JLabel footer;
-    private javax.swing.JLabel index;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -744,8 +868,6 @@ public class PlayWithPerson extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel number;
     private javax.swing.JLabel playTurn;
     private javax.swing.JLabel remainNum;
