@@ -467,7 +467,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
                                 location += 0;
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Chỉ được chọn ô trong cùng cột", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Chỉ được chọn ô trong cùng cột", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
                         }
 
                     } else {
@@ -578,7 +578,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
 
     private void test(int num, int[] arr, JPanel col) {
         if (chosen == 0 && numAmount > 0) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn ít nhất 1 ô", "LỖI", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn ít nhất 1 ô", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
         } else {
             numAmount -= chosen;
             remainNum.setText(String.valueOf(numAmount));
@@ -631,7 +631,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
             }
         }
         if (remainAmount < input) {
-            JOptionPane.showMessageDialog(null, "Vuợt quá số lượng ô trong cột", "LỖI", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vuợt quá số lượng ô trong cột", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
             return false;
         } else {
             return true;
@@ -710,7 +710,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
         } else if (string1 == 'E' && remain(arrE, numE, colE, input)) {
             deleteBtn(numE, arrE, colE, input);
         } else if (string1 != 'A' && string1 != 'B' && string1 != 'C' && string1 != 'D' && string1 != 'E') {
-            JOptionPane.showMessageDialog(null, "Cột " + string + " không tồn tại", "LỖI", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cột " + string + " không tồn tại", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
         }
     }
 
