@@ -406,7 +406,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                                 location += 0;
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Chỉ được chọn ô trong cùng cột", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Chỉ được chọn ô trong cùng cột", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
                         }
 
                     } else {
@@ -786,7 +786,7 @@ public class PlayWithBot extends javax.swing.JFrame {
 
     private void test(int num, int[] arr, JPanel col) {
         if (chosen == 0 && numAmount > 0) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn ít nhất 1 ô", "LỖI", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn ít nhất 1 ô", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
             botmove=1;
         } else {
             botmove=0;
