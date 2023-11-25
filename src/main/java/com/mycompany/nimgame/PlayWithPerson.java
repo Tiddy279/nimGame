@@ -12,10 +12,17 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -510,18 +517,27 @@ public class PlayWithPerson extends javax.swing.JFrame {
         lb.setFont(new Font("Segoe UI", Font.BOLD, 14));
     }
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
-        int choice = JOptionPane.showConfirmDialog(
-                null,
-                "Bạn có chắc chắn muốn trở về trang chủ?",
-                "Xác nhận trở về",
-                JOptionPane.YES_NO_OPTION
-        );
+        Object[] option = {
+            "Lưu và thoát",
+            "Không lưu và thoát",
+            "Ở lại"
+        };
+        int choice = JOptionPane.showOptionDialog(null, null, "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
 
         if (choice == JOptionPane.YES_OPTION) {
+            save();
             HomePage homePage = new HomePage();
             homePage.setVisible(true);
-
             dispose();// Đóng jframe hiện tại
+        } else if (choice == JOptionPane.NO_OPTION) {
+            HomePage homePage = new HomePage();
+            homePage.setVisible(true);
+            dispose();// Đóng jframe hiện tại
+        } else {
+            File f = new File("file.txt");
+            f.delete();
+            PlayWithPerson playWithPerson = new PlayWithPerson();
+            playWithPerson.setVisible(true);
         }
     }//GEN-LAST:event_btn_backActionPerformed
 
@@ -712,6 +728,138 @@ public class PlayWithPerson extends javax.swing.JFrame {
         } else if (string1 != 'A' && string1 != 'B' && string1 != 'C' && string1 != 'D' && string1 != 'E') {
             JOptionPane.showMessageDialog(null, "Cột " + string + " không tồn tại", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+    public void close() {
+        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+    }
+
+    public void save() {
+        try {
+            PrintWriter bw = new PrintWriter("file.txt", "UTF-8");
+            int temp = 0;
+            int numAmount = 0;
+            for (int i = 0; i < numA; i++) {
+                if (arrA[i] == 1) {
+                    temp += 1;
+                    numAmount++;
+                }
+            }
+            bw.write(temp + ";");
+            temp = 0;
+            for (int i = 0; i < numB; i++) {
+                if (arrB[i] == 1) {
+                    temp += 1;
+                    numAmount++;
+                }
+            }
+            bw.write(temp + ";");
+            temp = 0;
+            for (int i = 0; i < numC; i++) {
+                if (arrC[i] == 1) {
+                    temp += 1;
+                    numAmount++;
+                }
+            }
+            bw.write(temp + ";");
+            temp = 0;
+            for (int i = 0; i < numD; i++) {
+                if (arrD[i] == 1) {
+                    temp += 1;
+                    numAmount++;
+                }
+            }
+            bw.write(temp + ";");
+            temp = 0;
+            for (int i = 0; i < numE; i++) {
+                if (arrE[i] == 1) {
+                    temp += 1;
+                    numAmount++;
+                }
+            }
+            bw.write(temp + ";" + total + ";" + numAmount);
+            bw.write(";" + player1 + ";" + player2);
+            bw.flush();
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void loaddata() {
+        colA.removeAll();
+        colB.removeAll();
+        colC.removeAll();
+        colD.removeAll();
+        colE.removeAll();
+        chosen = 0;
+        location = 0;
+        arrA = new int[numA];
+        for (int i = 0; i < numA; i++) {
+            arrA[i] = 1;
+        }
+        arrB = new int[numB];
+        for (int i = 0; i < numB; i++) {
+            arrB[i] = 1;
+        }
+        arrC = new int[numC];
+        for (int i = 0; i < numC; i++) {
+            arrC[i] = 1;
+        }
+        arrD = new int[numD];
+        for (int i = 0; i < numD; i++) {
+            arrD[i] = 1;
+        }
+        arrE = new int[numE];
+        for (int i = 0; i < numE; i++) {
+            arrE[i] = 1;
+        }
+        initBtn(numA, arrA, colA);
+        initBtn(numB, arrB, colB);
+        initBtn(numC, arrC, colC);
+        initBtn(numD, arrD, colD);
+        initBtn(numE, arrE, colE);
+        if (player1 < player2) {
+            jPanel6.setBackground(Color.white);
+            jPanel5.setBackground(Color.red);
+            player1 += 1;
+        } else {
+            jPanel6.setBackground(Color.red);
+            jPanel5.setBackground(Color.white);
+            player2 += 1;
+        }
+        repaint();
+    }
+
+    public void open() {
+        try {
+            FileReader f = new FileReader("file.txt", StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(f);
+            String line = "";
+            while (true) {
+                line = br.readLine();
+                if (line == null) {
+                    break;
+                } else {
+                    String txt[] = line.split(";");
+                    numA = Integer.parseInt(txt[0]);
+                    numB = Integer.parseInt(txt[1]);
+                    numC = Integer.parseInt(txt[2]);
+                    numD = Integer.parseInt(txt[3]);
+                    numE = Integer.parseInt(txt[4]);
+                    total = Integer.parseInt(txt[5]);
+                    player1 = Integer.parseInt(txt[9]);
+                    player2 = Integer.parseInt(txt[10]);
+                }
+            }
+            loaddata();
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String args[]) {
