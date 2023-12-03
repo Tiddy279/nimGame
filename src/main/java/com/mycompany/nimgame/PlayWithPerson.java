@@ -732,51 +732,66 @@ public class PlayWithPerson extends javax.swing.JFrame {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
-
     public void save() {
         try {
             PrintWriter bw = new PrintWriter("file.txt", "UTF-8");
-            int temp = 0;
+            int tempA = 0;
+            int tempB = 0;
+            int tempC = 0;
+            int tempD = 0;
+            int tempE = 0;
             int numAmount = 0;
+            if (location == colA.getX()) {
+                tempA += chosen;
+                numAmount += chosen;
+            } else if (location == colB.getX()) {
+                tempB += chosen;
+                numAmount += chosen;
+            } else if (location == colC.getX()) {
+                tempC += chosen;
+                numAmount += chosen;
+            } else if (location == colD.getX()) {
+                tempD += chosen;
+                numAmount += chosen;
+            } else {
+                tempE += chosen;
+                numAmount += chosen;
+            }
             for (int i = 0; i < numA; i++) {
                 if (arrA[i] == 1) {
-                    temp += 1;
+                    tempA += 1;
                     numAmount++;
                 }
             }
-            bw.write(temp + ";");
-            temp = 0;
+            bw.write(tempA + ";");
             for (int i = 0; i < numB; i++) {
                 if (arrB[i] == 1) {
-                    temp += 1;
+                    tempB += 1;
                     numAmount++;
                 }
             }
-            bw.write(temp + ";");
-            temp = 0;
+            bw.write(tempB + ";");
             for (int i = 0; i < numC; i++) {
                 if (arrC[i] == 1) {
-                    temp += 1;
+                    tempC += 1;
                     numAmount++;
                 }
             }
-            bw.write(temp + ";");
-            temp = 0;
+            bw.write(tempC + ";");
             for (int i = 0; i < numD; i++) {
                 if (arrD[i] == 1) {
-                    temp += 1;
+                    tempD += 1;
                     numAmount++;
                 }
             }
-            bw.write(temp + ";");
-            temp = 0;
+            bw.write(tempD + ";");
             for (int i = 0; i < numE; i++) {
                 if (arrE[i] == 1) {
-                    temp += 1;
+                    tempE += 1;
                     numAmount++;
                 }
             }
-            bw.write(temp + ";" + total + ";" + numAmount);
+            bw.write(tempE + ";" + total + ";" + numAmount);
             bw.write(";" + player1 + ";" + player2);
             bw.flush();
             bw.close();
