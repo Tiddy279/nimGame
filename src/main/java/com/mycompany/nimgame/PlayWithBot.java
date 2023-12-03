@@ -720,6 +720,9 @@ public class PlayWithBot extends javax.swing.JFrame {
 
             dispose();// Đóng jframe hiện tại
         }
+        else if (choice == JOptionPane.CANCEL_OPTION){
+            dispose();// Đóng jframe hiện tại
+        }
     }//GEN-LAST:event_btn_backActionPerformed
 
     private void btn_continueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_continueActionPerformed

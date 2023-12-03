@@ -536,6 +536,8 @@ public class PlayWithPerson extends javax.swing.JFrame {
         } else {
             File f = new File("file.txt");
             f.delete();
+            PlayWithPerson playWithPerson = new PlayWithPerson();
+            playWithPerson.setVisible(true);
         }
     }//GEN-LAST:event_btn_backActionPerformed
 
