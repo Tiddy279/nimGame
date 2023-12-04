@@ -467,7 +467,6 @@ public class PlayWithPerson extends javax.swing.JFrame {
                 button.addActionListener((e) -> {
                     if (jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty()) {
 
-                    
                         if (button.getBackground() == Color.white) {// Ban đầu arr[i]=1 thì vẽ
                             // gán lại
                             if (location == 0 || location == col.getX()) {
@@ -552,7 +551,21 @@ public class PlayWithPerson extends javax.swing.JFrame {
                 "Làm mới",
                 "Về trang chủ"
             };
-            JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+            int a = JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+            if (a == JOptionPane.YES_OPTION) {
+                colA.removeAll();
+                colB.removeAll();
+                colC.removeAll();
+                colD.removeAll();
+                colE.removeAll();
+                location = 0;
+                chosen = 0;
+                init();
+            } else if(a== JOptionPane.NO_OPTION){
+                HomePage homePage = new HomePage();
+                homePage.setVisible(true);
+                dispose();// Đóng jframe hiện tại
+            }
         }
         if (jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty()) {
             checkLocation();
@@ -681,11 +694,13 @@ public class PlayWithPerson extends javax.swing.JFrame {
                         location = 0;
                         chosen = 0;
                         init();
-                    } else {
+                    } else if (a == JOptionPane.NO_OPTION) {
                         HomePage homePage = new HomePage();
                         homePage.setVisible(true);
 
                         dispose();// Đóng jframe hiện tại
+                    } else {
+                       
                     }
                 }
 
@@ -708,11 +723,12 @@ public class PlayWithPerson extends javax.swing.JFrame {
                         location = 0;
                         chosen = 0;
                         init();
-                    } else {
+                    } else if (a == JOptionPane.NO_OPTION) {
                         HomePage homePage = new HomePage();
                         homePage.setVisible(true);
-
                         dispose();// Đóng jframe hiện tại
+                    } else {
+                        
                     }
                 }
             }
@@ -724,7 +740,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
         numip = jTextField1.getText();
         input = Integer.valueOf(numip);
         char string1 = string.charAt(0);
- 
+
         if (string1 == 'A' && remain(arrA, numA, colA, input)) {
             deleteBtn(numA, arrA, colA, input);
         } else if (string1 == 'B' && remain(arrB, numB, colB, input)) {
