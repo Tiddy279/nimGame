@@ -117,6 +117,10 @@ public class PlayWithPerson extends javax.swing.JFrame {
         initBtn(numD, arrD, colD);
         initBtn(numE, arrE, colE);
         btn_continue.setBackground(new java.awt.Color(242, 237, 237));
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jPanel6.setBackground(Color.red);
+        jPanel5.setBackground(Color.white);
     }
 
     @SuppressWarnings("unchecked")
@@ -461,32 +465,35 @@ public class PlayWithPerson extends javax.swing.JFrame {
                 int temp = i;
                 JButton button = new JButton();
                 button.addActionListener((e) -> {
-                    if (button.getBackground() == Color.white) {// Ban đầu arr[i]=1 thì vẽ
-                        // gán lại
-                        if (location == 0 || location == col.getX()) {
-                            button.setBackground(Color.lightGray);
-                            arr[temp] = 0;
-                            chosen += 1;
+                    if (jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty()) {
 
-                            if (location == 0) {
-                                location += col.getX();
+                    
+                        if (button.getBackground() == Color.white) {// Ban đầu arr[i]=1 thì vẽ
+                            // gán lại
+                            if (location == 0 || location == col.getX()) {
+                                button.setBackground(Color.lightGray);
+                                arr[temp] = 0;
+                                chosen += 1;
+
+                                if (location == 0) {
+                                    location += col.getX();
+                                } else {
+                                    location += 0;
+                                }
                             } else {
-                                location += 0;
+                                JOptionPane.showMessageDialog(null, "Chỉ được chọn ô trong cùng cột", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
                             }
+
                         } else {
-                            JOptionPane.showMessageDialog(null, "Chỉ được chọn ô trong cùng cột", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
-                        }
+                            button.setBackground(Color.white);
+                            arr[temp] = 1;
+                            if (chosen == 1) {
+                                location -= col.getX();
+                            }
+                            chosen -= 1;
 
-                    } else {
-                        button.setBackground(Color.white);
-                        arr[temp] = 1;
-                        if (chosen == 1) {
-                            location -= col.getX();
                         }
-                        chosen -= 1;
-
                     }
-//                    }
                 });
                 button.setBackground(Color.white);
                 button.setSize(50, 50);
@@ -557,6 +564,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_continueActionPerformed
 
     private void checkLocation() {
+
         if (location == colA.getX()) {
             test(numA, arrA, colA);
         } else if (location == colB.getX()) {
@@ -644,7 +652,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
                 remainAmount += 1;
             }
         }
-        if (remainAmount < input) {
+        if (remainAmount < input || remainAmount <= 0) {
             JOptionPane.showMessageDialog(null, "Vuợt quá số lượng ô trong cột", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
             return false;
         } else {
@@ -655,8 +663,10 @@ public class PlayWithPerson extends javax.swing.JFrame {
     private void checkWin() {
         if (numAmount - chosen == 0) {
             if (player2 <= player1) {
+                jPanel6.setBackground(Color.white);
+                jPanel5.setBackground(Color.white);
                 int choice = JOptionPane.showConfirmDialog(null, "P2 chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
-                if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
+                if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CANCEL_OPTION) {
                     Object[] option = {
                         "Làm mới",
                         "Về trang chủ"
@@ -681,7 +691,9 @@ public class PlayWithPerson extends javax.swing.JFrame {
 
             } else {
                 int choice = JOptionPane.showConfirmDialog(null, "P1 chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
-                if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
+                jPanel6.setBackground(Color.white);
+                jPanel5.setBackground(Color.white);
+                if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CANCEL_OPTION) {
                     Object[] option = {
                         "Làm mới",
                         "Về trang chủ"
@@ -712,7 +724,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
         numip = jTextField1.getText();
         input = Integer.valueOf(numip);
         char string1 = string.charAt(0);
-        System.out.print(string1);
+ 
         if (string1 == 'A' && remain(arrA, numA, colA, input)) {
             deleteBtn(numA, arrA, colA, input);
         } else if (string1 == 'B' && remain(arrB, numB, colB, input)) {
@@ -726,12 +738,15 @@ public class PlayWithPerson extends javax.swing.JFrame {
         } else if (string1 != 'A' && string1 != 'B' && string1 != 'C' && string1 != 'D' && string1 != 'E') {
             JOptionPane.showMessageDialog(null, "Cột " + string + " không tồn tại", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
         }
+        jTextField1.setText("");
+        jTextField2.setText("");
     }
 
     public void close() {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
+
     public void save() {
         try {
             PrintWriter bw = new PrintWriter("file.txt", "UTF-8");

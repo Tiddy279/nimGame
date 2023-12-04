@@ -66,7 +66,6 @@ public class PlayWithBot extends javax.swing.JFrame {
         numA = rd.nextInt(7 - 1) + 1;
         numB = rd.nextInt(7 - 1) + 1;
         numC = rd.nextInt(7 - 1) + 1;
-
         total = numA + numB + numC;
         player1 = 0;
         bot = 1;
@@ -107,6 +106,7 @@ public class PlayWithBot extends javax.swing.JFrame {
         initBtn(numB, arrB, colB);
         initBtn(numC, arrC, colC);
         btn_continue.setBackground(new java.awt.Color(242, 237, 237));
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -436,6 +436,7 @@ public class PlayWithBot extends javax.swing.JFrame {
                 || (cola == 1 && colb == 0 && colc > 1) || (cola > 1 && colb == 1 && colc == 0) || (cola == 1 && colb > 1 && colc == 0)
                 || (cola == 0 && colb == 0 && colc > 1) || (cola > 1 && colb == 0 && colc == 0) || (cola == 0 && colb > 1 && colc == 0)) {
             int temp = 0;
+            bot++;
             if (cola != 0) {
                 temp++;
 
@@ -570,7 +571,7 @@ public class PlayWithBot extends javax.swing.JFrame {
     public void botMove() {
         getColNum();
         int s = cola ^ colb ^ colc;
-
+        bot++;
         if (s != 0) {
             if ((cola ^ (cola ^ colb ^ colc)) < cola) {
                 int sosoiboc = cola - (cola ^ (cola ^ colb ^ colc));
@@ -726,45 +727,42 @@ public class PlayWithBot extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_backActionPerformed
 
     private void btn_continueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_continueActionPerformed
-        if (numAmount == 0) {
-            Object[] option = {
-                "Làm mới",
-                "Về trang chủ"
-            };
-            JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
-        }
+//        if (numAmount == 0) {
+//            Object[] option = {
+//                "Làm mới",
+//                "Về trang chủ"
+//            };
+//            JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+//        }
         checkLocation();
-     
-
     }//GEN-LAST:event_btn_continueActionPerformed
     int botmove = 0;
 
     private void checkLocation() {
         if (location == colA.getX()) {
             test(numA, arrA, colA);
-
             getColNum();
             if (checkthdb() == false &&botmove==0) {
-                botMove();checkWin();
+                botMove();
             }
             getColNum();
-            
+            checkWin();;
         } else if (location == colB.getX()) {
             test(numB, arrB, colB);
             getColNum();
             if (checkthdb() == false&&botmove==0) {
-                botMove();checkWin();
+                botMove();
             }
             getColNum();
-            
+            checkWin();;
         } else {
             test(numC, arrC, colC);
             getColNum();
             if (checkthdb() == false&&botmove==0) {
-                botMove();checkWin();
+                botMove();
             }
             getColNum();
-            
+            checkWin();
         }
         repaint();
     }
@@ -858,32 +856,22 @@ public class PlayWithBot extends javax.swing.JFrame {
                         "Về trang chủ"
                     };
                     int a = JOptionPane.showOptionDialog(null, null, "Trò chơi kết thúc!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
-                    if (a == JOptionPane.YES_OPTION ) {
+                    if (a == JOptionPane.YES_OPTION) {
                         colA.removeAll();
                         colB.removeAll();
                         colC.removeAll();
-
                         location = 0;
                         chosen = 0;
                         init();
-                    }
-                    if (a == JOptionPane.CLOSED_OPTION) {
-                    Object[] op = {
-                        "Làm mới",
-                        "Về trang chủ"
-                    };
-                    }
-                    else if (a == JOptionPane.NO_OPTION){
+                    } else {
                         HomePage homePage = new HomePage();
                         homePage.setVisible(true);
 
                         dispose();// Đóng jframe hiện tại
                     }
-                    
                 }
 
             } else {
-                botmove=1;
                 int choice = JOptionPane.showConfirmDialog(null, "P1 chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
                 if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
                     Object[] option = {
@@ -895,7 +883,6 @@ public class PlayWithBot extends javax.swing.JFrame {
                         colA.removeAll();
                         colB.removeAll();
                         colC.removeAll();
-
                         location = 0;
                         chosen = 0;
                         init();
@@ -907,7 +894,8 @@ public class PlayWithBot extends javax.swing.JFrame {
                     }
                 }
             }
-        }
+        
+            }
     }
 
     public static void main(String args[]) {
