@@ -866,7 +866,6 @@ public class PlayWithBot extends javax.swing.JFrame {
                     } else if(a == JOptionPane.NO_OPTION){
                         HomePage homePage = new HomePage();
                         homePage.setVisible(true);
-
                         dispose();// Đóng jframe hiện tại
                     }
                 }

@@ -582,7 +582,7 @@ public class PlayWithPerson1 extends javax.swing.JFrame {
                 }
                 chosen = 1;
                 location = colA.getX();
-                checkLocation();
+                test(numA, arrA, colA);
                 break;
 
             case 2:
@@ -609,7 +609,7 @@ public class PlayWithPerson1 extends javax.swing.JFrame {
 
                 chosen = 1;
                 location = colB.getX();
-                checkLocation();
+                test(numB, arrB, colB);
                 break;
             case 3:
                 if (botcheck(changeNumCol(3), changeArray(3)) == 1) {
@@ -634,7 +634,7 @@ public class PlayWithPerson1 extends javax.swing.JFrame {
                 }
                 chosen = 1;
                 location = colC.getX();
-                checkLocation();
+                test(numC, arrC, colC);
                 break;
             case 4:
                 if (botcheck(changeNumCol(4), changeArray(4)) == 1) {
@@ -659,7 +659,7 @@ public class PlayWithPerson1 extends javax.swing.JFrame {
                 }
                 chosen = 1;
                 location = colD.getX();
-                checkLocation();
+                test(numD, arrD, colD);
                 break;
             case 5:
                 if (botcheck(changeNumCol(5), changeArray(5)) == 1) {
@@ -684,7 +684,7 @@ public class PlayWithPerson1 extends javax.swing.JFrame {
                 }
                 chosen = 1;
                 location = colE.getX();
-                checkLocation();
+                test(numE, arrE, colE);
                 break;
             default:
                 throw new AssertionError();
@@ -747,17 +747,23 @@ public class PlayWithPerson1 extends javax.swing.JFrame {
         }
         if (jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty()) {
             checkLocation();
-            botMove();
             checkWin();
+            if (botmove == 0) {
+                botMove();
+                checkWin();
+            }
         } else {
             continute();
-            botMove();
             checkWin();
+            if (botmove == 0) {
+                botMove();
+                checkWin();
+            }
+
         }
     }//GEN-LAST:event_btn_continueActionPerformed
 
     private void checkLocation() {
-
         if (location == colA.getX()) {
             test(numA, arrA, colA);
         } else if (location == colB.getX()) {
@@ -840,20 +846,24 @@ public class PlayWithPerson1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private boolean remain(int[] arr, int num, JPanel col, int input) {
+        int temp = 0;
         for (int i = 0; i < num; i++) {
             if (arr[i] == 1) {
-                remainAmount += 1;
+                temp += 1;
             }
         }
-        if (remainAmount < input || remainAmount <= 0) {
+        if (temp < input || temp <= 0) {
+            botmove =1;
             JOptionPane.showMessageDialog(null, "Vuợt quá số lượng ô trong cột", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
             return false;
         } else {
+            botmove=0;
             return true;
         }
     }
-int botmove =0;
-   public void checkWin() {
+    int botmove = 0;
+
+    public void checkWin() {
         int colAcheck = 0;
         for (int i = 0; i < numA; i++) {
             if (arrA[i] == 1) {
@@ -872,9 +882,21 @@ int botmove =0;
                 colCcheck += 1;
             }
         }
-        if ((colAcheck + colBcheck + colCcheck) == 0) {
+        int colDcheck = 0;
+        for (int i = 0; i < numD; i++) {
+            if (arrD[i] == 1) {
+                colDcheck += 1;
+            }
+        }
+        int colEcheck = 0;
+        for (int i = 0; i < numE; i++) {
+            if (arrE[i] == 1) {
+                colCcheck += 1;
+            }
+        }
+        if ((colAcheck + colBcheck + colCcheck + colDcheck + colEcheck) == 0) {
             if (player2 <= player1) {
-                botmove=1;
+                botmove = 1;
                 int choice = JOptionPane.showConfirmDialog(null, "Máy chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
                 if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
                     Object[] option = {
@@ -898,6 +920,7 @@ int botmove =0;
                 }
 
             } else {
+                botmove = 0;
                 int choice = JOptionPane.showConfirmDialog(null, "P1 chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
                 if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
                     Object[] option = {
@@ -920,8 +943,8 @@ int botmove =0;
                     }
                 }
             }
-        
-            }
+
+        }
     }
 
     private void continute() {
@@ -946,8 +969,6 @@ int botmove =0;
         jTextField1.setText("");
         jTextField2.setText("");
     }
-
-   
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

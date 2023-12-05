@@ -121,11 +121,11 @@ public class HomePage extends javax.swing.JFrame {
 
     private void StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartActionPerformed
 
-        Object[] option = {
+        Object[] op = {
             "Chơi với người",
             "Chơi với máy"
         };
-        int a = JOptionPane.showOptionDialog(null, null, "Chọn đối tượng chơi cùng?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+        int a = JOptionPane.showOptionDialog(null, null, "Chọn đối tượng chơi cùng?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
         if (a == JOptionPane.YES_OPTION) {
             PlayWithPerson playWithPerson = new PlayWithPerson();
             playWithPerson.setVisible(true);
@@ -134,9 +134,10 @@ public class HomePage extends javax.swing.JFrame {
             PlayWithBot playWithBot = new PlayWithBot();
             playWithBot.setVisible(true);
             dispose();// Đóng jframe hiện tại
-        } else if (a == JOptionPane.CANCEL_OPTION){
+        } else if (a == JOptionPane.CANCEL_OPTION) {
             dispose();// Đóng jframe hiện tại
         }
+
     }//GEN-LAST:event_StartActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed

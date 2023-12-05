@@ -48,7 +48,20 @@ public class PlayWithPerson extends javax.swing.JFrame {
 
     public PlayWithPerson() {
         initComponents();
-        init();
+        File f = new File("file.txt");
+        if (f.exists()) {
+            Object[] option = {
+                "Có",
+                "Ván mới",};
+            int x = JOptionPane.showOptionDialog(null, "Bạn có muốn chơi tiếp ván trước không ?", "Thông báo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+            if (x == JOptionPane.YES_OPTION) {
+                open();
+            } else {
+                init();
+            }
+        } else {
+                init();
+        }
     }
     int player1;
     int player2;
@@ -538,6 +551,8 @@ public class PlayWithPerson extends javax.swing.JFrame {
         } else if (choice == JOptionPane.NO_OPTION) {
             HomePage homePage = new HomePage();
             homePage.setVisible(true);
+            File f = new File("file.txt");
+            f.delete();
             dispose();// Đóng jframe hiện tại
         } else {
             File f = new File("file.txt");
@@ -570,7 +585,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
         if (jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty()) {
             checkLocation();
             checkWin();
-        } else {
+        } else if(!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty()){
             continute();
             checkWin();
         }
@@ -660,12 +675,13 @@ public class PlayWithPerson extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private boolean remain(int[] arr, int num, JPanel col, int input) {
+        int temp=0;
         for (int i = 0; i < num; i++) {
             if (arr[i] == 1) {
-                remainAmount += 1;
+                temp += 1;
             }
         }
-        if (remainAmount < input || remainAmount <= 0) {
+        if (temp < input || temp <= 0) {
             JOptionPane.showMessageDialog(null, "Vuợt quá số lượng ô trong cột", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
             return false;
         } else {
@@ -674,7 +690,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
     }
 
     private void checkWin() {
-        if (numAmount - chosen == 0) {
+        if (numAmount - chosen == 0) {         
             if (player2 <= player1) {
                 jPanel6.setBackground(Color.white);
                 jPanel5.setBackground(Color.white);
@@ -740,7 +756,6 @@ public class PlayWithPerson extends javax.swing.JFrame {
         numip = jTextField1.getText();
         input = Integer.valueOf(numip);
         char string1 = string.charAt(0);
-
         if (string1 == 'A' && remain(arrA, numA, colA, input)) {
             deleteBtn(numA, arrA, colA, input);
         } else if (string1 == 'B' && remain(arrB, numB, colB, input)) {
@@ -874,6 +889,7 @@ public class PlayWithPerson extends javax.swing.JFrame {
             jPanel5.setBackground(Color.white);
             player2 += 1;
         }
+        remainNum.setText(String.valueOf(numAmount));
         repaint();
     }
 
@@ -893,9 +909,9 @@ public class PlayWithPerson extends javax.swing.JFrame {
                     numC = Integer.parseInt(txt[2]);
                     numD = Integer.parseInt(txt[3]);
                     numE = Integer.parseInt(txt[4]);
-                    total = Integer.parseInt(txt[5]);
-                    player1 = Integer.parseInt(txt[9]);
-                    player2 = Integer.parseInt(txt[10]);
+                    numAmount = Integer.parseInt(txt[6]);
+                    player1 = Integer.parseInt(txt[7]);
+                    player2 = Integer.parseInt(txt[8]);
                 }
             }
             loaddata();
