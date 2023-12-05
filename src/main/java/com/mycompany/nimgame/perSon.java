@@ -545,11 +545,11 @@ public class perSon extends javax.swing.JFrame {
 
         if (choice == JOptionPane.YES_OPTION) {
             save();
-            HomePage homePage = new HomePage();
+            homePage homePage = new homePage();
             homePage.setVisible(true);
             dispose();// Đóng jframe hiện tại
         } else if (choice == JOptionPane.NO_OPTION) {
-            HomePage homePage = new HomePage();
+            homePage homePage = new homePage();
             homePage.setVisible(true);
             File f = new File("file.txt");
             f.delete();
@@ -577,7 +577,7 @@ public class perSon extends javax.swing.JFrame {
                 chosen = 0;
                 init();
             } else if(a== JOptionPane.NO_OPTION){
-                HomePage homePage = new HomePage();
+                homePage homePage = new homePage();
                 homePage.setVisible(true);
                 dispose();// Đóng jframe hiện tại
             }
@@ -711,7 +711,7 @@ public class perSon extends javax.swing.JFrame {
                         chosen = 0;
                         init();
                     } else if (a == JOptionPane.NO_OPTION) {
-                        HomePage homePage = new HomePage();
+                        homePage homePage = new homePage();
                         homePage.setVisible(true);
 
                         dispose();// Đóng jframe hiện tại
@@ -740,7 +740,7 @@ public class perSon extends javax.swing.JFrame {
                         chosen = 0;
                         init();
                     } else if (a == JOptionPane.NO_OPTION) {
-                        HomePage homePage = new HomePage();
+                        homePage homePage = new homePage();
                         homePage.setVisible(true);
                         dispose();// Đóng jframe hiện tại
                     } else {

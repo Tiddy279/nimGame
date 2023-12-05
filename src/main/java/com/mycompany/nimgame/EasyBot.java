@@ -44,9 +44,9 @@ import javax.swing.SwingUtilities;
  *
  * @author DUY
  */
-public class EasyBot extends javax.swing.JFrame {
+public class easyBot extends javax.swing.JFrame {
 
-    public EasyBot() {
+    public easyBot() {
         initComponents();
         init();
     }
@@ -717,7 +717,7 @@ public class EasyBot extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION
         );
         if (choice == JOptionPane.YES_OPTION) {
-            HomePage homePage = new HomePage();
+            homePage homePage = new homePage();
             homePage.setVisible(true);
             setVisible(false);
         }
@@ -740,7 +740,7 @@ public class EasyBot extends javax.swing.JFrame {
                 chosen = 0;
                 init();
             } else if (a == JOptionPane.NO_OPTION) {
-                HomePage homePage = new HomePage();
+                homePage homePage = new homePage();
                 homePage.setVisible(true);
                 dispose();// Đóng jframe hiện tại
             }
@@ -912,7 +912,7 @@ public class EasyBot extends javax.swing.JFrame {
                         chosen = 0;
                         init();
                     } else {
-                        HomePage homePage = new HomePage();
+                        homePage homePage = new homePage();
                         homePage.setVisible(true);
 
                         dispose();// Đóng jframe hiện tại
@@ -936,7 +936,7 @@ public class EasyBot extends javax.swing.JFrame {
                         chosen = 0;
                         init();
                     } else {
-                        HomePage homePage = new HomePage();
+                        homePage homePage = new homePage();
                         homePage.setVisible(true);
 
                         dispose();// Đóng jframe hiện tại
@@ -974,7 +974,7 @@ public class EasyBot extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new EasyBot().setVisible(true);
+                new easyBot().setVisible(true);
             }
         });
     }

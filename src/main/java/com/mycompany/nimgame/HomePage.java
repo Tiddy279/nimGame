@@ -27,12 +27,12 @@ import javax.swing.text.Style;
  *
  * @author DUY
  */
-public class HomePage extends javax.swing.JFrame {
+public class homePage extends javax.swing.JFrame {
 
     /**
      * Creates new form Option
      */
-    public HomePage() {
+    public homePage() {
         initComponents();
     }
 
@@ -137,11 +137,11 @@ public class HomePage extends javax.swing.JFrame {
                     };
                 int b = JOptionPane.showOptionDialog(null, null, "Chọn cấp độ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
                 if (b == JOptionPane.YES_OPTION) {
-                        EasyBot easyBot = new EasyBot();
+                        easyBot easyBot = new easyBot();
                         easyBot.setVisible(true);
                         dispose();
                 }else if(b == JOptionPane.NO_OPTION){
-                    HardBot hardBot = new HardBot();
+                    hardBot hardBot = new hardBot();
                     hardBot.setVisible(true);
                     dispose();
                 }
@@ -176,7 +176,7 @@ public class HomePage extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomePage().setVisible(true);
+                new homePage().setVisible(true);
             }
         });
     }

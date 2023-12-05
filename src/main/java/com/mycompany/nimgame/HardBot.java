@@ -38,9 +38,9 @@ import javax.swing.SwingUtilities;
  *
  * @author DUY
  */
-public class HardBot extends javax.swing.JFrame {
+public class hardBot extends javax.swing.JFrame {
 
-    public HardBot() {
+    public hardBot() {
         initComponents();
         init();
     }
@@ -716,7 +716,7 @@ public class HardBot extends javax.swing.JFrame {
         );
 
         if (choice == JOptionPane.YES_OPTION) {
-            HomePage homePage = new HomePage();
+            homePage homePage = new homePage();
             homePage.setVisible(true);
 
             dispose();// Đóng jframe hiện tại
@@ -864,7 +864,7 @@ public class HardBot extends javax.swing.JFrame {
                         chosen = 0;
                         init();
                     } else if(a == JOptionPane.NO_OPTION){
-                        HomePage homePage = new HomePage();
+                        homePage homePage = new homePage();
                         homePage.setVisible(true);
                         dispose();// Đóng jframe hiện tại
                     }
@@ -887,7 +887,7 @@ public class HardBot extends javax.swing.JFrame {
                         chosen = 0;
                         init();
                     } else if(a == JOptionPane.NO_OPTION){
-                        HomePage homePage = new HomePage();
+                        homePage homePage = new homePage();
                         homePage.setVisible(true);
 
                         dispose();// Đóng jframe hiện tại
@@ -902,7 +902,7 @@ public class HardBot extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HardBot().setVisible(true);
+                new hardBot().setVisible(true);
             }
         });
     }
