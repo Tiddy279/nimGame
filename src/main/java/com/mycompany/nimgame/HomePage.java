@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import com.mycompany.nimgame.PlayWithPerson;
+import com.mycompany.nimgame.perSon;
 import java.awt.Font;
 import javax.swing.Action;
 import javax.swing.JFrame;
@@ -127,13 +127,27 @@ public class HomePage extends javax.swing.JFrame {
         };
         int a = JOptionPane.showOptionDialog(null, null, "Chọn đối tượng chơi cùng?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
         if (a == JOptionPane.YES_OPTION) {
-            PlayWithPerson playWithPerson = new PlayWithPerson();
+            perSon playWithPerson = new perSon();
             playWithPerson.setVisible(true);
             dispose();// Đóng jframe hiện tại
         } else if (a == JOptionPane.NO_OPTION) {
-            PlayWithBot playWithBot = new PlayWithBot();
-            playWithBot.setVisible(true);
-            dispose();// Đóng jframe hiện tại
+                Object[] option = {
+                "Đơn giản",
+                "Khó"
+                    };
+                int b = JOptionPane.showOptionDialog(null, null, "Chọn cấp độ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+                if (b == JOptionPane.YES_OPTION) {
+                        EasyBot easyBot = new EasyBot();
+                        easyBot.setVisible(true);
+                        dispose();
+                }else if(b == JOptionPane.NO_OPTION){
+                    HardBot hardBot = new HardBot();
+                    hardBot.setVisible(true);
+                    dispose();
+                }
+                else if(a == JOptionPane.CANCEL_OPTION){
+                    dispose();
+                }
         } else if (a == JOptionPane.CANCEL_OPTION) {
             dispose();// Đóng jframe hiện tại
         }
