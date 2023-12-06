@@ -58,6 +58,7 @@ public class easyBot extends javax.swing.JFrame {
     int[] arrD;
     int[] arrE;
     int input;
+    int cola,colb,colc,cold,cole=0;
     String string, numip;
     int numA, numB, numC, numD, numE;
     int total;
@@ -76,28 +77,39 @@ public class easyBot extends javax.swing.JFrame {
         total = numA + numB + numC + numD + numE;
         player1 = 0;
         player2 = 1;
+        cola = 0;
+        colb = 0;
+        colc = 0;
+        cold=0;
+        cole=0;
         numAmount = total;
         arrA = new int[numA];
         for (int i = 0; i < numA; i++) {
             arrA[i] = 1;
+              cola++;
         }
         arrB = new int[numB];
         for (int i = 0; i < numB; i++) {
             arrB[i] = 1;
+             colb++;
         }
         arrC = new int[numC];
         for (int i = 0; i < numC; i++) {
             arrC[i] = 1;
+            colc++;
         }
         arrD = new int[numD];
         for (int i = 0; i < numD; i++) {
             arrD[i] = 1;
+            cold++;
         }
         arrE = new int[numE];
         for (int i = 0; i < numE; i++) {
             arrE[i] = 1;
+            cole++;
         }
-        remainNum.setText(String.valueOf(numAmount));
+        int numAmount1 =cola + colb + colc+ cold+cole;
+        remainNum.setText(String.valueOf(numAmount1));
         remainNum.setFont(new Font("Segoe UI", Font.PLAIN, 18));
         int y;
         y = 40;
@@ -808,12 +820,10 @@ public class easyBot extends javax.swing.JFrame {
             chosen = 0;
             col.removeAll();
             initBtn(num, arr, col);
-            if (numAmount == 0) {
-                btn_continue.setBackground(Color.red);
-            }
+           
             if (player1 < player2) {
-                jPanel6.setBackground(Color.white);
-                jPanel5.setBackground(Color.red);
+                jPanel6.setBackground(Color.red);
+                jPanel5.setBackground(Color.white);
                 player1 += 1;
             } else {
                 jPanel6.setBackground(Color.red);

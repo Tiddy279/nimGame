@@ -797,9 +797,7 @@ public class hardBot extends javax.swing.JFrame {
             chosen = 0;
             col.removeAll();
             initBtn(num, arr, col);
-            if (numAmount == 0) {
-                btn_continue.setBackground(Color.red);
-            }
+           
             if (player1 < bot) {
                 jPanel6.setBackground(Color.red);
                 jPanel6.setBackground(Color.white);
