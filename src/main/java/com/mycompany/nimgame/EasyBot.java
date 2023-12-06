@@ -764,29 +764,35 @@ public class easyBot extends javax.swing.JFrame {
             if (botmove == 0) {
                 botMove();
                 checkWin();
+                
             }
-        } else {
+        } else if((!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty()) && chosen ==0){
             continute();
             checkWin();
             if (botmove == 0) {
                 botMove();
                 checkWin();
             }
-
         }
     }//GEN-LAST:event_btn_continueActionPerformed
 
     private void checkLocation() {
         if (location == colA.getX()) {
             test(numA, arrA, colA);
+            
+            
         } else if (location == colB.getX()) {
             test(numB, arrB, colB);
+            
         } else if (location == colC.getX()) {
             test(numC, arrC, colC);
+            
         } else if (location == colD.getX()) {
             test(numD, arrD, colD);
+            
         } else {
             test(numE, arrE, colE);
+            
         }
         repaint();
     }
@@ -922,7 +928,7 @@ public class easyBot extends javax.swing.JFrame {
                         location = 0;
                         chosen = 0;
                         init();
-                    } else {
+                    } else if(a == JOptionPane.NO_OPTION) {
                         homePage homePage = new homePage();
                         homePage.setVisible(true);
 
@@ -966,14 +972,34 @@ public class easyBot extends javax.swing.JFrame {
 
         if (string1 == 'A' && remain(arrA, numA, colA, input)) {
             deleteBtn(numA, arrA, colA, input);
+            if (botmove == 0) {
+                botMove();
+                checkWin();
+            }
         } else if (string1 == 'B' && remain(arrB, numB, colB, input)) {
             deleteBtn(numB, arrB, colB, input);
+            if (botmove == 0) {
+                botMove();
+                checkWin();
+            }
         } else if (string1 == 'C' && remain(arrC, numC, colC, input)) {
             deleteBtn(numC, arrC, colC, input);
+            if (botmove == 0) {
+                botMove();
+                checkWin();
+            }
         } else if (string1 == 'D' && remain(arrD, numD, colD, input)) {
             deleteBtn(numD, arrD, colD, input);
+            if (botmove == 0) {
+                botMove();
+                checkWin();
+            }
         } else if (string1 == 'E' && remain(arrE, numE, colE, input)) {
             deleteBtn(numE, arrE, colE, input);
+            if (botmove == 0) {
+                botMove();
+                checkWin();
+            }
         } else if (string1 != 'A' && string1 != 'B' && string1 != 'C' && string1 != 'D' && string1 != 'E') {
             JOptionPane.showMessageDialog(null, "Cột " + string + " không tồn tại", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
         }

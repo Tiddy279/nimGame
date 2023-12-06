@@ -585,7 +585,7 @@ public class perSon extends javax.swing.JFrame {
         if (jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty()) {
             checkLocation();
             checkWin();
-        } else if(!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty()){
+        } else if((!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty()) && chosen ==0){
             continute();
             checkWin();
         }
