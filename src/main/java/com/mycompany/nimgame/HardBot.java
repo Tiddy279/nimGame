@@ -573,8 +573,9 @@ public class hardBot extends javax.swing.JFrame {
         int s = cola ^ colb ^ colc;
         bot++;
         if (s != 0) {
-            if ((cola ^ (cola ^ colb ^ colc)) < cola) {
-                int sosoiboc = cola - (cola ^ (cola ^ colb ^ colc));
+            if ((cola ^ s) < cola) {
+                int result = cola ^ s;
+                int sosoiboc = cola - result;
 //                cola -= sosoiboc;
                 numAmount -= sosoiboc;
                
@@ -592,8 +593,9 @@ public class hardBot extends javax.swing.JFrame {
                 } while (temp != sosoiboc);
                 colA.removeAll();
                 initBtn(numA, arrA, colA);
-            } else if ((colb ^ (cola ^ colb ^ colc)) < colb) {
-                int sosoiboc = colb - (colb ^ (cola ^ colb ^ colc));
+            } else if ((colb ^ s) < colb) {
+                int result = colb ^ s;
+                int sosoiboc = colb - result;
                 numAmount -= sosoiboc;
                
 //                colb -= sosoiboc;
@@ -611,8 +613,9 @@ public class hardBot extends javax.swing.JFrame {
                 } while (temp != sosoiboc);
                 colB.removeAll();
                 initBtn(numB, arrB, colB);
-            } else if ((colc ^ (cola ^ colb ^ colc)) < colc) {
-                int sosoiboc = colc - (colc ^ (cola ^ colb ^ colc));
+            } else if ((colc ^ s) < colc) {
+                int result = colc ^ s;
+                int sosoiboc = colc - result;
                 numAmount -= sosoiboc;
                 
 //                colc -= sosoiboc;
