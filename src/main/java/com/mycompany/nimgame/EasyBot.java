@@ -77,6 +77,7 @@ public class easyBot extends javax.swing.JFrame {
         total = numA + numB + numC + numD + numE;
         player1 = 0;
         player2 = 1;
+        botmove=0;
         cola = 0;
         colb = 0;
         colc = 0;
@@ -108,8 +109,8 @@ public class easyBot extends javax.swing.JFrame {
             arrE[i] = 1;
             cole++;
         }
-        int numAmount1 =cola + colb + colc+ cold+cole;
-        remainNum.setText(String.valueOf(numAmount1));
+       
+        remainNum.setText(String.valueOf(numAmount));
         remainNum.setFont(new Font("Segoe UI", Font.PLAIN, 18));
         int y;
         y = 40;
@@ -578,6 +579,7 @@ public class easyBot extends javax.swing.JFrame {
                     for (int i = 0; i < numA; i++) {
                         arrA[i] = 0;
                     }
+                    chosen = 1;
                 } else {
                     botSelect = rd.nextInt(botcheck(changeNumCol(1), changeArray(1))) + 1;
                     int temp = 0;
@@ -591,9 +593,9 @@ public class easyBot extends javax.swing.JFrame {
                             i++;
                         }
                     } while (temp != botSelect);
-
+  chosen = botSelect;
                 }
-                chosen = 1;
+//                chosen = 1;
                 location = colA.getX();
                 test(numA, arrA, colA);
                 break;
@@ -603,7 +605,7 @@ public class easyBot extends javax.swing.JFrame {
                     for (int i = 0; i < numB; i++) {
                         arrB[i] = 0;
                     }
-
+                    chosen = 1;
                 } else {
                     botSelect = rd.nextInt(botcheck(changeNumCol(2), changeArray(2))) + 1;
                     int temp = 0;
@@ -617,10 +619,10 @@ public class easyBot extends javax.swing.JFrame {
                             i++;
                         }
                     } while (temp != botSelect);
-
+  chosen = botSelect;
                 }
 
-                chosen = 1;
+//                chosen = 1;
                 location = colB.getX();
                 test(numB, arrB, colB);
                 break;
@@ -629,7 +631,7 @@ public class easyBot extends javax.swing.JFrame {
                     for (int i = 0; i < numC; i++) {
                         arrC[i] = 0;
                     }
-
+                    chosen = 1;
                 } else {
                     botSelect = rd.nextInt(botcheck(changeNumCol(3), changeArray(3))) + 1;
                     int temp = 0;
@@ -643,9 +645,9 @@ public class easyBot extends javax.swing.JFrame {
                             i++;
                         }
                     } while (temp != botSelect);
-
+  chosen = botSelect;
                 }
-                chosen = 1;
+//                chosen = 1;
                 location = colC.getX();
                 test(numC, arrC, colC);
                 break;
@@ -654,7 +656,7 @@ public class easyBot extends javax.swing.JFrame {
                     for (int i = 0; i < numD; i++) {
                         arrD[i] = 0;
                     }
-
+                    chosen = 1;
                 } else {
                     botSelect = rd.nextInt(botcheck(changeNumCol(4), changeArray(4))) + 1;
                     int temp = 0;
@@ -668,9 +670,9 @@ public class easyBot extends javax.swing.JFrame {
                             i++;
                         }
                     } while (temp != botSelect);
-
+  chosen = botSelect;
                 }
-                chosen = 1;
+//                chosen = 1;
                 location = colD.getX();
                 test(numD, arrD, colD);
                 break;
@@ -679,8 +681,8 @@ public class easyBot extends javax.swing.JFrame {
                     for (int i = 0; i < numE; i++) {
                         arrE[i] = 0;
                     }
-
-                } else {
+                      chosen = 1;
+                } else {           
                     botSelect = rd.nextInt(botcheck(changeNumCol(5), changeArray(5))) + 1;
                     int temp = 0;
                     int i = 0;
@@ -693,9 +695,9 @@ public class easyBot extends javax.swing.JFrame {
                             i++;
                         }
                     } while (temp != botSelect);
-
+                   chosen = botSelect;
                 }
-                chosen = 1;
+                
                 location = colE.getX();
                 test(numE, arrE, colE);
                 break;
@@ -769,6 +771,7 @@ public class easyBot extends javax.swing.JFrame {
         } else if((!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty()) && chosen ==0){
             continute();
             checkWin();
+            System.out.print("Nhap so : "+botmove+" ---");
             if (botmove == 0) {
                 botMove();
                 checkWin();
@@ -779,8 +782,6 @@ public class easyBot extends javax.swing.JFrame {
     private void checkLocation() {
         if (location == colA.getX()) {
             test(numA, arrA, colA);
-            
-            
         } else if (location == colB.getX()) {
             test(numB, arrB, colB);
             
@@ -817,7 +818,8 @@ public class easyBot extends javax.swing.JFrame {
     }//GEN-LAST:event_RecreateActionPerformed
 
     private void test(int num, int[] arr, JPanel col) {
-        if (chosen == 0 && numAmount > 0) {
+        if (chosen == 0 && numAmount >= 0) {
+            System.out.print(chosen+"  "+numAmount+"--");
             JOptionPane.showMessageDialog(null, "Vui lòng chọn ít nhất 1 ô", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
         } else {
             numAmount -= chosen;
@@ -931,13 +933,12 @@ public class easyBot extends javax.swing.JFrame {
                     } else if(a == JOptionPane.NO_OPTION) {
                         homePage homePage = new homePage();
                         homePage.setVisible(true);
-
                         dispose();// Đóng jframe hiện tại
                     }
                 }
 
             } else {
-                botmove = 0;
+                botmove = 1;
                 int choice = JOptionPane.showConfirmDialog(null, "P1 chiến thắng!!!", "Thông báo", JOptionPane.CLOSED_OPTION);
                 if (choice == JOptionPane.OK_OPTION || choice == JOptionPane.CLOSED_OPTION) {
                     Object[] option = {
@@ -972,35 +973,20 @@ public class easyBot extends javax.swing.JFrame {
 
         if (string1 == 'A' && remain(arrA, numA, colA, input)) {
             deleteBtn(numA, arrA, colA, input);
-            if (botmove == 0) {
-                botMove();
-                checkWin();
-            }
         } else if (string1 == 'B' && remain(arrB, numB, colB, input)) {
             deleteBtn(numB, arrB, colB, input);
-            if (botmove == 0) {
-                botMove();
-                checkWin();
-            }
+    
         } else if (string1 == 'C' && remain(arrC, numC, colC, input)) {
             deleteBtn(numC, arrC, colC, input);
-            if (botmove == 0) {
-                botMove();
-                checkWin();
-            }
+
         } else if (string1 == 'D' && remain(arrD, numD, colD, input)) {
             deleteBtn(numD, arrD, colD, input);
-            if (botmove == 0) {
-                botMove();
-                checkWin();
-            }
+
         } else if (string1 == 'E' && remain(arrE, numE, colE, input)) {
             deleteBtn(numE, arrE, colE, input);
-            if (botmove == 0) {
-                botMove();
-                checkWin();
-            }
+  
         } else if (string1 != 'A' && string1 != 'B' && string1 != 'C' && string1 != 'D' && string1 != 'E') {
+            botmove = 1;
             JOptionPane.showMessageDialog(null, "Cột " + string + " không tồn tại", "Nhắc nhở", JOptionPane.WARNING_MESSAGE);
         }
         jTextField1.setText("");
